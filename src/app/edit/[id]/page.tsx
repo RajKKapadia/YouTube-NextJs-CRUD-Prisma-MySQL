@@ -1,4 +1,5 @@
 import ProductForm from "@/components/product-form";
+import { handleEditProductAction } from "@/lib/actions";
 import { getProductById } from "@/lib/data";
 
 export default async function EditProductPage({ params }: { params: { id: string } }) {
@@ -10,7 +11,8 @@ export default async function EditProductPage({ params }: { params: { id: string
             </div>
         );
     }
+    const submitFunction = handleEditProductAction.bind(null, Number(params.id));
     return (
-        <ProductForm product={product} btnName="Update" id={Number(params.id)} type="update" title={`Edit the product ${product.name}.`}></ProductForm>
+        <ProductForm product={product} btnName="Update" submitFunction={submitFunction} type="update" title={`Edit the product ${product.name}.`}></ProductForm>
     );
 };

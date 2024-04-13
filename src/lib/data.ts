@@ -16,11 +16,11 @@ export const getAllProducts = async () => {
     }
 };
 
-export const createProduct = async (values: z.infer<typeof productSchema>) => {
+export const createProduct = async (product: z.infer<typeof productSchema>) => {
     noStore();
     try {
         await prisma.product.create({
-            data: values
+            data: product
         });
         return { error: "" };
     } catch (error) {

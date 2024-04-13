@@ -20,7 +20,11 @@ import { createProduct, updateProductById } from "@/lib/data"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
-export default function ProductForm({ product, btnName, id, type, title }: { product: z.infer<typeof productSchema>, btnName: string, id: number, type: string, title: string }) {
+export default function ProductForm({
+    product, btnName, submitFunction, title, type
+}: {
+    product: z.infer<typeof productSchema>, btnName: string, submitFunction: any, title: string, type: string
+}) {
     const router = useRouter();
     const form = useForm<z.infer<typeof productSchema>>({
         resolver: zodResolver(productSchema),
@@ -33,29 +37,9 @@ export default function ProductForm({ product, btnName, id, type, title }: { pro
     });
     async function handleSubmit(product: z.infer<typeof productSchema>) {
         if (type === "create") {
-            const { error } = await createProduct(product);
-            if (error !== "") {
-                toast({
-                    title: "ERROR",
-                    description: error,
-                    variant: "destructive"
-                })
-            } else {
-                router.prefetch('/');
-                router.push('/');
-            }
+            await submitFunction(product);
         } else {
-            const { error } = await updateProductById(id, product);
-            if (error !== "") {
-                toast({
-                    title: "ERROR",
-                    description: error,
-                    variant: "destructive"
-                })
-            } else {
-                router.prefetch('/');
-                router.push('/');
-            }
+            await submitFunction(product);
         }
     };
     return (
