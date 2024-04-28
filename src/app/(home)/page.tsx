@@ -1,8 +1,8 @@
 import { getAllProducts } from "@/lib/data";
-import { DataTable } from "./data-table";
-import { columns } from "./columns";
-import Link from "next/link";
+import { DataTable } from "@/app/(home)/data-table";
+import { columns } from "@/app/(home)/columns";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function Home() {
   const products = await getAllProducts();
@@ -16,4 +16,4 @@ export default async function Home() {
       <DataTable columns={columns} data={products!} />
     </div>
   );
-}
+};
