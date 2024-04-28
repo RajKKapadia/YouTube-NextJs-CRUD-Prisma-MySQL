@@ -2,8 +2,8 @@
 NextJs CRUD operation using Prisma, MySQL, ShadCN.
 
 Note:
-    `npx` == `yarn dlx` == `pnpm dlx`
-    `npm run` == `yarn` == `pnpm`
+* `npx` == `yarn dlx` == `pnpm dlx`
+* `npm run` == `yarn` == `pnpm`
 
 Steps to follow:
 * install all the required packages using `npm install`, `yarn install`, or `pnpm install`
